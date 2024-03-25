@@ -26,7 +26,7 @@ mapboxgl.accessToken =
 
 var map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/finnquinn/cltyta5kz006r01pf3goi7zxt",
+  style: "mapbox://styles/finnquinn/clu7crwm100g601p6aufr9dfo",
   center: [-93.2650108, 44.977753],
   zoom: 6,
   preserveDrawingBuffer: true,

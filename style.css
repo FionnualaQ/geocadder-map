@@ -800,6 +800,7 @@ display: none;
   }
 
   @media screen and (max-width: 684px) and (min-width: 631px) {
+  
     fieldset#filter-by-business-type {
       left: 160px;
       z-index: 3;
@@ -878,13 +879,8 @@ display: none;
     fieldset#filter-by-business-type {
       left: 10px;
       z-index: 3;
+      top: 50%;
     }
-
-    fieldset#filter-by-ownership-type {
-      left: 260px;
-      z-index: 2;
-    }
-
     span.anchor {
       font-size: 12px !important;
     }
@@ -953,6 +949,14 @@ width: 150px;
   }
 
   @media (max-width: 600px) {
+    div.visible-welcome{
+      min-width: 50px;
+    }
+
+    fieldset#filter-by-business-type {
+     top: 50%
+    }
+
     .visible-welcome {
       width: 100%;
       height: 100%;
@@ -981,25 +985,17 @@ width: 150px;
       font-size: 0.8em;
       width: 50%;
     }
-    button.second-welcome-previous-button,
-    button.third-welcome-previous-button,
-    button.fourth-welcome-previous-button {
-      font-size: 0.8em;
-      width: 25%;
-      left: 25%;
-    }
-    button.second-welcome-next-button,
-    button.third-welcome-next-button,
-    button.fourth-welcome-next-button {
-      font-size: 0.8em;
-      width: 25%;
-    }
   }
 
   @media screen and (max-width: 540px) and (min-width: 456px) {
+    div.visible-welcome{
+      min-width: 50px;
+    }
+
     fieldset#filter-by-business-type {
       left: 10px;
       z-index: 3;
+      top: 50%;
     }
 
     fieldset#filter-by-ownership-type {
@@ -1080,6 +1076,10 @@ width: 150px;
   }
 
   @media screen and (max-width: 455px) and (min-width: 400px) {
+    div.visible-welcome{
+      min-width: 50px;
+    }
+
     #menu {
       width: 187px;
       /* max-width: 82%; */
@@ -1105,12 +1105,7 @@ width: 150px;
     fieldset#filter-by-business-type {
       left: 10px;
       z-index: 3;
-    }
-
-    fieldset#filter-by-ownership-type {
-      left: 10px;
-      top: 70px;
-      z-index: 2;
+      top: 50%;
     }
 
     span.anchor {
@@ -1170,6 +1165,9 @@ width: 150px;
   }
 
   @media screen and (max-width: 399px) {
+    div.visible-welcome{
+      min-width: 50px;
+    }
     #menu {
       width: 224px;
       /* max-width: 82%; */
@@ -1189,12 +1187,7 @@ width: 150px;
     fieldset#filter-by-business-type {
       left: 10px;
       z-index: 3;
-    }
-
-    fieldset#filter-by-ownership-type {
-      left: 10px;
-      top: 70px;
-      z-index: 2;
+      top: 50%;
     }
 
     input#searchTxt {

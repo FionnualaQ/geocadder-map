@@ -77,7 +77,6 @@ class MapboxGLButtonControl {
 
 /* Event Handlers */
 function one(event) {
-  console.log("View Info")
   $("div.welcome-first").addClass("visible-welcome");
 }
 
@@ -353,7 +352,6 @@ checkList.getElementsByClassName("anchor")[0].onclick = function (evt) {
 $("input[type='checkbox'][name='filter-by-business-type-input']").click(
   function () {
     var currentCountry = $(this).val();
-    console.log(currentCountry)
     if ($(this).is(":checked")) {
       $("[data-business-type='" + currentCountry + "']").each(function (index) {
         $(this).attr("data-business-type-visible", "true");
@@ -369,7 +367,6 @@ $("input[type='checkbox'][name='filter-by-business-type-input']").click(
 );
 
 $("#all-businesses").click(function () {
-  console.log(selectAllBusinesses)
   if (selectAllBusinesses) {
     $(".marker").attr("data-business-type-visible", "false");
     $("div.sidebar-details-points").attr("data-business-type-visible", "false");
@@ -487,20 +484,14 @@ function searchByName(data) {
       // search for point by Ref number
 
       var positiveArray = data.filter(function (value) {
-        console.log(inputTextValue.toLowerCase());
         if (inputTextValue.indexOf("’") > -1) {
           inputTextValue = inputTextValue.replace("’", "'");
-          console.log(inputTextValue);
         }
 
         var tableValue = value["name"];
-        console.log(tableValue.toLowerCase());
         if (tableValue.indexOf("’") > -1) {
           tableValue = tableValue.replace("’", "'");
-          console.log(tableValue);
         }
-        // console.log(value["name"].toLowerCase());
-        // console.log(inputTextValue.toLowerCase());
         return tableValue.toLowerCase() === inputTextValue.toLowerCase();
       });
 
@@ -550,7 +541,6 @@ function searchByName(data) {
 
       /*`<h3 style="background-color: #000000">${positiveArray[0].name}</h3><p class='popup-summary'>${positiveArray[0].summary}</p><p class='popup-website'><a class='phone-call-button' href="${positiveArray[0].website}">Learn more</a></p>`*/
 
-      // console.log(positiveArray[0].properties["Ref N"]);
       var latitude = positiveArray[0].latitude;
       var longitude = positiveArray[0].longitude;
 

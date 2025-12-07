@@ -478,7 +478,11 @@ function scrollToTheSelectedItem(currentPointId) {
   var selectedItem = document.getElementById(
     "sidebar-details-point-id-" + currentPointId
   );
-  selectedItem.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  selectedItem.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+    inline: "start",
+  });
   // end scrolling to the selected item in the sidebar
 }
 
@@ -632,10 +636,68 @@ function searchByName(data) {
         listing.classList.add("active");
 
         // scroll to the item in the sidebar
-        listing.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+        listing.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
         // end scroll to the item in the sidebar
       }
     });
   }
   // end listener when you press a key
+}
+
+function makeMarkerPopup(
+  name,
+  businessType,
+  yearOpened,
+  address,
+  latitude,
+  longitude,
+  website,
+  phone
+) {
+  var popupContent = "";
+  if (name) {
+    popupContent += "<div class='title'>" + name + "</div><hr>";
+  }
+
+  popupContent += "<p>" + businessType + "<p>";
+
+  if (yearOpened) {
+    popupContent += "<p>Year Opened: " + yearOpened + "<p>";
+  }
+
+  if (address) {
+    popupContent +=
+      "<div class='popup-link-div'><img class='address-icon' src='icons/location.png'><a class='web-links address-text' target='_blank' href='https://www.google.com/maps/dir//" +
+      latitude +
+      "," +
+      longitude +
+      "'>" +
+      address +
+      "</a></div>";
+  }
+
+  if (website) {
+    popupContent +=
+      "<div class='popup-link-div'><img class='address-icon' src='icons/website.png'><a class='web-links address-text' target='_blank' href='" +
+      website +
+      "'>Website</a></div>";
+  }
+
+  if (phone) {
+    popupContent +=
+      "<div class='popup-link-div'><img class='address-icon' src='icons/phone.png'><a class='web-links address-text' target='_blank' href='tel:" +
+      phone +
+      "'>" +
+      phone +
+      "</a></div>";
+  }
+
+  popupContent +=
+    "<div class='popup-link-div'><img class='feedback-icon' src='icons/feedback.png'><a class='web-links address-text' target='_blank' href='https://forms.gle/E8FdLQkWRpPbgQ7a7'>Submit Feedback</a></div>";
+
+  return popupContent;
 }

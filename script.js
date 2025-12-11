@@ -10,8 +10,8 @@ getIconColorData().then((iconRules) => {
   $("div.welcome-first").load("welcome.html", function () {
     // Populate icon legend after icon rules loaded from spreadsheet and welcome.html is loaded
     $(".welcome-close-button").on("click", function () {
-      gtag('event', 'welcome_modal_close', {
-        'event_category': 'engagement'
+      gtag("event", "welcome_modal_close", {
+        event_category: "engagement",
       });
       $("div.visible-welcome").removeClass("visible-welcome");
     });
@@ -23,8 +23,8 @@ getIconColorData().then((iconRules) => {
 $("div.welcome-first").addClass("visible-welcome");
 
 $(".button-start-welcome").on("click", function () {
-  gtag('event', 'welcome_modal_open', {
-    'event_category': 'engagement'
+  gtag("event", "welcome_modal_open", {
+    event_category: "engagement",
   });
   $("div.welcome-first").addClass("visible-welcome");
 });
@@ -105,8 +105,8 @@ function triggerFilters(event) {
   if (dropdown.hasClass("visible")) {
     dropdown.removeClass("visible");
   } else {
-    gtag('event', 'filters_open', {
-      'event_category': 'engagement'
+    gtag("event", "filters_open", {
+      event_category: "engagement",
     });
     // Position dropdown relative to button
     const buttonRect = button[0].getBoundingClientRect();
@@ -133,8 +133,8 @@ map.addControl(ctrlPointFilters, "top-right");
 function triggerSidebar(event) {
   const isOpening = !$("#sidebar-wrapper").hasClass("visible");
   if (isOpening) {
-    gtag('event', 'sidebar_open', {
-      'event_category': 'engagement'
+    gtag("event", "sidebar_open", {
+      event_category: "engagement",
     });
   }
   $("#sidebar-wrapper").toggleClass("visible");
@@ -307,10 +307,10 @@ $.getJSON(
 
         el.addEventListener("click", (e) => {
           // Track marker click event
-          gtag('event', 'marker_click', {
-            'event_category': 'map_interaction',
-            'event_label': name,
-            'business_type': businessType
+          gtag("event", "marker_click", {
+            event_category: "map_interaction",
+            event_label: name,
+            business_type: businessType,
           });
 
           flyToStoreOnMarkerClick(markerObj);
@@ -388,10 +388,10 @@ $.getJSON(
           // e.stopPropagation();
 
           if (currentId === id) {
-            gtag('event', 'sidebar_item_click', {
-              'event_category': 'navigation',
-              'event_label': name,
-              'business_type': businessType
+            gtag("event", "sidebar_item_click", {
+              event_category: "navigation",
+              event_label: name,
+              business_type: businessType,
             });
             const popupContent = makeMarkerPopup(
               name,
@@ -457,10 +457,10 @@ $(document).on(
   "input[type='checkbox'][name='filter-by-business-type-input']:not(#all-businesses)",
   function () {
     var currentCountry = $(this).val();
-    gtag('event', 'filter_toggle', {
-      'event_category': 'filtering',
-      'event_label': currentCountry,
-      'checked': $(this).is(":checked")
+    gtag("event", "filter_toggle", {
+      event_category: "filtering",
+      event_label: currentCountry,
+      checked: $(this).is(":checked"),
     });
     if ($(this).is(":checked")) {
       $("[data-business-type='" + currentCountry + "']").each(function (index) {
@@ -482,9 +482,9 @@ $(document).on(
 );
 
 $(document).on("click", "#all-businesses", function () {
-  gtag('event', 'filter_select_all', {
-    'event_category': 'filtering',
-    'action': selectAllBusinesses ? 'deselect_all' : 'select_all'
+  gtag("event", "filter_select_all", {
+    event_category: "filtering",
+    action: selectAllBusinesses ? "deselect_all" : "select_all",
   });
   if (selectAllBusinesses) {
     $(".marker").attr("data-business-type-visible", "false");
@@ -654,10 +654,10 @@ function searchByName(data) {
         var latitude = positiveArray[0].latitude;
         var longitude = positiveArray[0].longitude;
 
-        gtag('event', 'search', {
-          'event_category': 'navigation',
-          'event_label': searchValue,
-          'business_type': item.businessType
+        gtag("event", "search", {
+          event_category: "navigation",
+          event_label: searchValue,
+          business_type: item.businessType,
         });
 
         map.flyTo({
@@ -717,29 +717,41 @@ function makeMarkerPopup(
       latitude +
       "," +
       longitude +
-      "' onclick=\"gtag('event', 'directions_click', {'event_category': 'external_link', 'event_label': '" + name.replace(/'/g, "\\'") + "'});\">" +
+      "' onclick=\"gtag('event', 'directions_click', {'event_category': 'external_link', 'event_label': '" +
+      name.replace(/'/g, "\\'") +
+      "'});\">" +
       address +
       "</a></div>";
   }
 
   if (website) {
+    var websiteUrl =
+      website.startsWith("http://") || website.startsWith("https://")
+        ? website
+        : "https://" + website;
     popupContent +=
       "<div class='popup-link-div'><img class='address-icon' src='icons/website.png'><a class='web-links address-text' target='_blank' href='" +
-      website +
-      "' onclick=\"gtag('event', 'website_click', {'event_category': 'external_link', 'event_label': '" + name.replace(/'/g, "\\'") + "'});\"'>Website</a></div>";
+      websiteUrl +
+      "' onclick=\"gtag('event', 'website_click', {'event_category': 'external_link', 'event_label': '" +
+      name.replace(/'/g, "\\'") +
+      "'});\"'>Website</a></div>";
   }
 
   if (phone) {
     popupContent +=
       "<div class='popup-link-div'><img class='address-icon' src='icons/phone.png'><a class='web-links address-text' target='_blank' href='tel:" +
       phone +
-      "' onclick=\"gtag('event', 'phone_click', {'event_category': 'external_link', 'event_label': '" + name.replace(/'/g, "\\'") + "'});\"'>" +
+      "' onclick=\"gtag('event', 'phone_click', {'event_category': 'external_link', 'event_label': '" +
+      name.replace(/'/g, "\\'") +
+      "'});\"'>" +
       phone +
       "</a></div>";
   }
 
   popupContent +=
-    "<div class='popup-link-div'><img class='feedback-icon' src='icons/feedback.png'><a class='web-links address-text' target='_blank' href='https://forms.gle/E8FdLQkWRpPbgQ7a7' onclick=\"gtag('event', 'feedback_click', {'event_category': 'external_link', 'event_label': '" + name.replace(/'/g, "\\'") + "'});\">Submit Feedback</a></div>";
+    "<div class='popup-link-div'><img class='feedback-icon' src='icons/feedback.png'><a class='web-links address-text' target='_blank' href='https://forms.gle/E8FdLQkWRpPbgQ7a7' onclick=\"gtag('event', 'feedback_click', {'event_category': 'external_link', 'event_label': '" +
+    name.replace(/'/g, "\\'") +
+    "'});\">Submit Feedback</a></div>";
 
   return popupContent;
 }
